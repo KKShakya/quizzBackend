@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+const quesSchema = new mongoose.Schema(
   {
    
     question: {
@@ -11,27 +11,28 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    options:[
-      {
-        opt1: {
-          type: String,
-          required: true,
+    options:{
+        type:Array,
+        opt1:{
+          type:String,
+          required:true
         },
-        opt2: {
-          type: String,
-          required: true,
+        opt2:{
+          type:String,
+          required:true
         },
-        opt3: {
-          type: String,
-          required: true,
+        opt3:{
+          type:String,
+          required:true
         },
-        opt4: {
-          type: String,
-          required: true,
-        },
-        
-      }
-    ],
+        opt4:{
+          type:String,
+          required:true
+        }
+    },
+     
+       
+       
     level:{type:String,required:true,enum:["easy","medium","hard"]},
   },
   {
@@ -39,6 +40,9 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const Que = mongoose.model("que", quesSchema);
 
-module.exports = User;
+module.exports = Que;
+// opt1: {
+//   type: String,
+//   required: true,

@@ -1,26 +1,37 @@
-
+//imports
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
-const userRouter = require("./Routes/user.route");
+
+const userRouter = require("./Routes/user.route.js");
+const quesRouter = require("./Routes/question.route.js");
+const {connect} = require("./config.js/db");
 require('dotenv').config();
+const cors = require("cors");
+const isAuthenticated = require("./middlewares/autenticate.middleware.js");
+
+
+//const variables
 const app = express();
 const port  = process.env.PORT || 8080;
-const {connect} = require("./config.js/db")
 
-
+//frontend coneection
 app.use(express.json());
 app.use(cors());
 
+//all the routes 
+app.use("/user",userRouter);
+app.use(isAuthenticated);
+app.use("/ques",quesRouter);
 
-app.use("/user",userRouter)
 
+//home page
 app.get("/",(req,res)=>{
   res.send("Welcome to QUiz app")
 })
 
 
 
+//server
 app.listen(port,async ()=>{
   try {
    await connect()

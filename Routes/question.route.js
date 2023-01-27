@@ -1,55 +1,49 @@
 const express = require("express");
-const jwt = require('jsonwebtoken');
 
 const quesRouter = express.Router();
-const User = require("../Modals/user.modal.js");
-require('dotenv').config();
+const Ques = require("../Modals/question.modal.js");
 
 
 
-//get users
-userRouter.get("/", async (req, res) => {
+
+
+quesRouter.get("/", async (req, res) => {
   try {
-    const user = await User.find();
-    return res.status(200).send({ success: true, user });
+    const ques= await Ques.find();
+    return res.status(200).send({ success: true,ques });
   } catch (error) {
     return res.status(404).send({ error: error.message });
   }
 });
 
-//Register User
-userRouter.post("/new", async (req, res) => {
+
+
+
+quesRouter.post("/new", async (req, res) => {
   try {
-    const { email } = req.body;
-    const getUser = await User.findOne({ email });
-    if (getUser) {
-      return res.send({ message: "User already exists" });
+    const { question } = req.body;
+    const getQues = await Ques.findOne({question });
+    
+    if (getQues) {
+      return res.send({ message: "Question already exists" });
     }
-    const user = await User.create(req.body);
+
+    const ques = await Ques.create(req.body);
  
-    return res.status(201).send({ message: "user registered successfully", user });
+    return res.status(201).send({ message: "Ques suceesfully added",ques });
   } catch (error) {
     return res.status(404).send({ error: error.message });
   }
 });
 
-//User login
-userRouter.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.send({ message: "User does not exist" });
-    }
-    if (user.password != password) {
-      return res.send({ message: "Password is incorrect" });
-    }
-    //token generation
-    const token = jwt.sign({ "userID": user._id }, hashKey, {
-      expiresIn:"2h",
-    });
 
-    return res.status(200).send({ message: "Login successful",token, user });
+quesRouter.patch("/update/:id", async (req, res) => {
+  
+  try {
+
+    const ques = await Ques.findByIdAndUpdate(req.params.id,req.body);
+
+    return res.status(200).send({ message: "updated succesfully",ques });
   } catch (error) {
     console.log(error)
     return res.send({ message: "Something went wrong" });
@@ -59,10 +53,11 @@ userRouter.post("/login", async (req, res) => {
 
 
 //get users details
-userRouter.get("/details", async (req, res) => {
+quesRouter.delete("/delete/:id", async (req, res) => {
+  let id = req.params.id
   try {
-    const user = await User.findById(req.query.id);
-    return res.status(200).send({ success: true, user });
+    const ques = await Ques.findByIdAndDelete(id);
+    return res.status(200).send({ success: "deleted sucessfully"});
   } catch (error) {
     return res.status(404).send({ error: error.message });
   }
@@ -70,6 +65,4 @@ userRouter.get("/details", async (req, res) => {
 
 
 
-
-
-module.exports = userRouter;
+module.exports = quesRouter;
