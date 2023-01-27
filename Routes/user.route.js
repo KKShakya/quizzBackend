@@ -24,11 +24,11 @@ userRouter.get("/", async (req, res) => {
 //Register User
 userRouter.post("/new", async (req, res) => {
   try {
-    const { email } = req.body;
-    const getUser = await User.findOne({ email });
-    if (getUser) {
-      return res.send({ message: "User already exists" });
-    }
+    // const { email } = req.body;
+    // const getUser = await User.findOne({ email });
+    // if (getUser) {
+    //   return res.send({ message: "User already exists" });
+    // }
     const user = await User.create(req.body);
  
     return res.status(201).send({ message: "user registered successfully", user });
