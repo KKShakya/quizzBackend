@@ -1,12 +1,11 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
 
-const userRouter = express.Router();
+const quesRouter = express.Router();
 const User = require("../Modals/user.modal.js");
 require('dotenv').config();
 
-const hashKey = process.env.SECRET_KEY;
-console.log(hashKey)
+
 
 //get users
 userRouter.get("/", async (req, res) => {
@@ -17,9 +16,6 @@ userRouter.get("/", async (req, res) => {
     return res.status(404).send({ error: error.message });
   }
 });
-
-
-
 
 //Register User
 userRouter.post("/new", async (req, res) => {
