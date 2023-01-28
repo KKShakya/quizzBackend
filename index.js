@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const userRouter = require("./Routes/user.route.js");
 const quesRouter = require("./Routes/question.route.js");
-const {connect} = require("./config.js/db");
+const {connection} = require("./config.js/db");
 require('dotenv').config();
 const cors = require("cors");
 const isAuthenticated = require("./middlewares/autenticate.middleware.js");
@@ -34,7 +34,7 @@ app.use("/ques",quesRouter);
 //server
 app.listen(port,async ()=>{
   try {
-   await connect()
+   await connection;
     console.log(`Server is running on port ${port}`)
   } catch (err) {
     console.log(err)
