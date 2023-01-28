@@ -61,7 +61,6 @@ userRouter.post("/login", async (req, res) => {
 });
 
 
-
 //get users details
 userRouter.get("/details", async (req, res) => {
   try {

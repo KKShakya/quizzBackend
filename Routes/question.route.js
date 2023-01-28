@@ -5,8 +5,6 @@ const Ques = require("../Modals/question.modal.js");
 
 
 
-
-
 quesRouter.get("/", async (req, res) => {
   try {
     const ques= await Ques.find();

@@ -29,8 +29,6 @@ app.use("/ques",quesRouter);
 
 
 
-
-
 //server
 app.listen(port, async ()=>{
   try {
