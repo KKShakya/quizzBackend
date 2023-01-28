@@ -1,3 +1,4 @@
+const { request } = require("express");
 const express = require("express");
 const jwt = require('jsonwebtoken');
 
@@ -53,7 +54,7 @@ userRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ "userID": user._id }, hashKey, {
       expiresIn:"2h",
     });
-
+         req.body.userID= user._id;
     return res.status(200).send({ message: "Login successful",token, user });
   } catch (error) {
     console.log(error)

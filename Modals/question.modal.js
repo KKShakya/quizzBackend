@@ -29,7 +29,7 @@ const quesSchema = new mongoose.Schema(
         required: true,
       },
     },
-    category: { type: String, required: true },
+    // category: { type: String, required: true },
   },
   {
     versionKey: false,
