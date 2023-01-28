@@ -22,7 +22,7 @@ app.get("/",(req,res)=>{
 })
 //all the routes 
 app.use("/user",userRouter);
-app.use(isAuthenticated);
+// app.use(isAuthenticated);
 app.use("/ques",quesRouter);
 
 
