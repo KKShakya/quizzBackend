@@ -1,7 +1,5 @@
 //imports
 const express = require("express");
-const mongoose = require("mongoose");
-
 const userRouter = require("./Routes/user.route.js");
 const quesRouter = require("./Routes/question.route.js");
 const {connection} = require("./config.js/db");

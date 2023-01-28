@@ -29,9 +29,10 @@ userRouter.post("/new", async (req, res) => {
     // if (getUser) {
     //   return res.send({ message: "User already exists" });
     // }
-    const user = await User.create(req.body);
- 
+    const user = new  User(req.body);
+    await user.save()
     return res.status(201).send({ message: "user registered successfully", user });
+ 
   } catch (error) {
     return res.status(404).send({ error: error.message });
   }

@@ -10,7 +10,7 @@ quesRouter.get("/", async (req, res) => {
   try {
     let ques;
 if(category){
-ques = await Ques.find({category:category});
+ques = await Ques.find({category});
 }else{
   ques  = await Ques.find();
 }
