@@ -15,7 +15,7 @@ quesRouter.get("/", async (req, res) => {
 //   ques  = await Ques.find();
 // }
 try{
-  let ques = Ques.find();
+  let ques =await Ques.find();
   return res.status(200).send({ success: true,ques });
 }  
    catch (error) {
