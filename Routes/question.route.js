@@ -6,8 +6,16 @@ const Ques = require("../Modals/question.modal.js");
 
 
 quesRouter.get("/", async (req, res) => {
+  let category = req.query.category; 
   try {
-    const ques= await Ques.find();
+    let ques;
+if(category){
+ques = await Ques.find({category:category});
+}else{
+  ques  = await Ques.find();
+}
+
+    
     return res.status(200).send({ success: true,ques });
   } catch (error) {
     return res.status(404).send({ error: error.message });
