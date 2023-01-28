@@ -32,9 +32,10 @@ app.use("/ques",quesRouter);
 
 
 //server
-app.listen(port,async ()=>{
+app.listen(port, async ()=>{
   try {
-   await connection;
+   let data = await connection;
+   if(!data) console.log("error")
     console.log(`Server is running on port ${port}`)
   } catch (err) {
     console.log(err)

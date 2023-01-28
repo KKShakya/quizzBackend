@@ -6,7 +6,7 @@ const User = require("../Modals/user.modal.js");
 require('dotenv').config();
 
 const hashKey = process.env.SECRET_KEY;
-console.log(hashKey)
+
 
 //get users
 userRouter.get("/", async (req, res) => {
